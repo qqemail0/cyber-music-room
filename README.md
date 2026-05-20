@@ -2,6 +2,10 @@
 
 一个可部署到 GitHub Pages 的赛博朋克在线听歌网站。
 
+## 线上访问
+
+GitHub Pages: https://qqemail0.github.io/cyber-music-room/
+
 ## 功能
 
 - 内置 3 首原创合成曲，无版权问题。

@@ -40,6 +40,7 @@ const checks = [
   ["indexeddb", js.includes("indexedDB.open")],
   ["firebase optional", js.includes("NEON_FIREBASE_CONFIG")],
   ["cyber colors", css.includes("--cyan") && css.includes("--pink")],
+  ["readme deployment url", readme.includes("https://qqemail0.github.io/cyber-music-room/")],
   ["no private host paths", !privatePathPattern.test(readme)],
 ];
 
