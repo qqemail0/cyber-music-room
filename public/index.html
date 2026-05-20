@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Neon Pulse 在线听歌房</title>
+  <meta name="description" content="赛博朋克风格在线听歌网站，支持内置歌曲、本地上传保存、在线用户列表和 120 分钟聊天记录自动清理。">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <div class="grid-noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">NP</span>
+      <span>
+        <strong>Neon Pulse</strong>
+        <em>Cyber Music Room</em>
+      </span>
+    </a>
+    <div class="status-strip">
+      <span id="syncMode">LOCAL MODE</span>
+      <span id="clock">--:--</span>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero-panel">
+      <div>
+        <p class="eyebrow">24/7 neon stream</p>
+        <h1>一起在线听歌，上传你的夜城声波。</h1>
+        <p class="lead">内置原创合成曲，本地上传可保存；接入 Firebase 后支持跨设备在线用户、聊天和云端歌曲。</p>
+      </div>
+      <form id="joinForm" class="join-card">
+        <label for="nickname">当前昵称</label>
+        <div class="inline-form">
+          <input id="nickname" name="nickname" maxlength="24" placeholder="输入你的名字" autocomplete="nickname">
+          <button type="submit">进入频道</button>
+        </div>
+        <p id="identityLine">等待接入...</p>
+      </form>
+    </section>
+
+    <section class="dashboard">
+      <article class="player-panel">
+        <div class="screen">
+          <canvas id="visualizer" width="720" height="240" aria-label="音频可视化"></canvas>
+          <div class="scanline" aria-hidden="true"></div>
+        </div>
+        <div class="track-meta">
+          <p class="eyebrow">Now playing</p>
+          <h2 id="trackTitle">未选择歌曲</h2>
+          <p id="trackSource">选择内置歌曲或上传音频</p>
+        </div>
+        <audio id="audio" controls preload="metadata"></audio>
+        <div class="controls">
+          <button id="prevTrack" type="button">上一首</button>
+          <button id="playTrack" type="button">播放 / 暂停</button>
+          <button id="nextTrack" type="button">下一首</button>
+        </div>
+      </article>
+
+      <aside class="upload-panel">
+        <h2>上传歌曲</h2>
+        <p>支持 MP3、WAV、OGG、M4A。GitHub Pages 模式会保存到当前浏览器；Firebase 模式可保存到云端。</p>
+        <label class="drop-zone" for="songFile">
+          <input id="songFile" type="file" accept="audio/*">
+          <span>选择音频文件</span>
+          <strong>UPLOAD AUDIO</strong>
+        </label>
+        <div class="upload-actions">
+          <button id="clearLocalSongs" type="button">清空本地上传</button>
+        </div>
+        <p id="uploadStatus" class="small-status">等待上传。</p>
+      </aside>
+    </section>
+
+    <section class="lower-grid">
+      <article class="library-panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">music library</p>
+            <h2>歌曲列表</h2>
+          </div>
+          <span id="songCount">0 tracks</span>
+        </div>
+        <div id="songList" class="song-list"></div>
+      </article>
+
+      <article class="users-panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">presence</p>
+            <h2>当前在线</h2>
+          </div>
+          <span id="onlineCount">0 online</span>
+        </div>
+        <div id="userList" class="user-list"></div>
+      </article>
+
+      <article class="chat-panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">live chat</p>
+            <h2>聊天频道</h2>
+          </div>
+          <span>120 分钟自动清理</span>
+        </div>
+        <div id="chatLog" class="chat-log" aria-live="polite"></div>
+        <form id="chatForm" class="chat-form">
+          <input id="chatInput" maxlength="280" placeholder="发一句弹幕..." autocomplete="off">
+          <button type="submit">发送</button>
+        </form>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>Neon Pulse · Uploaded audio should respect copyright · Chat TTL: 120 minutes.</p>
+  </footer>
+
+  <script src="firebase-config.js"></script>
+  <script type="module" src="assets/app.js"></script>
+</body>
+</html>
