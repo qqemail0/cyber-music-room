@@ -27,7 +27,7 @@ const privatePathMarkers = [
   ["Users", "/", "mo"].join(""),
   ["Users", "\\", "mo"].join(""),
   ["test", "chatcpt"].join(""),
-  ["Downloads", "\\", "public-apis-master"].join("")
+  ["Downloads", "\\", ["public", "-", "apis", "-", "master"].join("")].join("")
 ].map(escapeRegExp);
 const privatePathPattern = new RegExp(privatePathMarkers.join("|"), "i");
 
