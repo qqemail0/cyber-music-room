@@ -347,6 +347,16 @@ footer {
   border-top: 1px solid var(--line);
 }
 
+footer a {
+  color: var(--cyan);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--pink);
+}
+
 @media (max-width: 980px) {
   .hero-panel, .dashboard, .lower-grid {
     grid-template-columns: 1fr;
