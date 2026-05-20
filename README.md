@@ -14,8 +14,7 @@
 ## 本地运行
 
 ```powershell
-cd M:\testchatcpt\project_cyber_music_room\public
-python -m http.server 8090
+python -m http.server 8090 -d public
 ```
 
 打开：

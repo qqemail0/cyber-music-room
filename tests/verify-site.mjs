@@ -19,6 +19,17 @@ for (const file of required) {
 const html = readFileSync(join(root, "public/index.html"), "utf8");
 const js = readFileSync(join(root, "public/assets/app.js"), "utf8");
 const css = readFileSync(join(root, "public/assets/styles.css"), "utf8");
+const readme = readFileSync(join(root, "README.md"), "utf8");
+const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const privatePathMarkers = [
+  ["C:", "\\", "Users", "\\"].join(""),
+  ["M:", "\\"].join(""),
+  ["Users", "/", "mo"].join(""),
+  ["Users", "\\", "mo"].join(""),
+  ["test", "chatcpt"].join(""),
+  ["Downloads", "\\", "public-apis-master"].join("")
+].map(escapeRegExp);
+const privatePathPattern = new RegExp(privatePathMarkers.join("|"), "i");
 
 const checks = [
   ["title", html.includes("Neon Pulse 在线听歌房")],
@@ -29,6 +40,7 @@ const checks = [
   ["indexeddb", js.includes("indexedDB.open")],
   ["firebase optional", js.includes("NEON_FIREBASE_CONFIG")],
   ["cyber colors", css.includes("--cyan") && css.includes("--pink")],
+  ["no private host paths", !privatePathPattern.test(readme)],
 ];
 
 const failed = checks.filter(([, ok]) => !ok);
