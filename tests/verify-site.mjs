@@ -35,6 +35,8 @@ const checks = [
   ["title", html.includes("Neon Pulse 在线听歌房")],
   ["audio player", html.includes("<audio")],
   ["open source link", html.includes("https://github.com/qqemail0/cyber-music-room")],
+  ["top repo orb", html.includes("repo-orb")],
+  ["styled source footer", html.includes("source-footer-link")],
   ["upload input", html.includes('type="file"')],
   ["chat ttl", js.includes("120 * 60 * 1000")],
   ["indexeddb", js.includes("indexedDB.open")],
